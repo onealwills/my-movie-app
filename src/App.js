@@ -3,6 +3,9 @@ import HomePage from './pages/HomePage';
 import { useEffect } from 'react';
 import { fetchMovies } from './Redux/movieSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
+import MovieRecommendations from './components/MovieRecommendations.jsx';
+import MovieList from './components/MovieList.jsx';
+import GenreSelection from './components/GenreSelection.jsx';
 
 
 function App() {
@@ -11,6 +14,8 @@ const { movies, status, error } = useSelector((state) => state.movies);
 
 
 console.log("env", process.env.REACT_APP_API_KEY);
+
+console.log("bearer token",process.env.REACT_APP_ACCESS_TOKEN);
 
 useEffect(()=>{
     if (status === 'idle') {
@@ -32,6 +37,10 @@ useEffect(() => {
     <div className="App">
       <h1 className='bg-red-700'>Hello world</h1>
       <HomePage/>
+      {/* <GenreSelection/> */}
+      {/* <MovieRecommendations/> */}
+      <MovieList/>
+      <GenreSelection/>
     </div>
   );
 }

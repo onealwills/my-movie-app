@@ -21,7 +21,9 @@ export const fetchMovies = createAsyncThunk(
       return data.results; // Adjust this if your API response format is different
     }
   );
+  
 
+  
 
 
 // Create a slice of the store
