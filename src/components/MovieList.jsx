@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, fetchMoviesByGenres } from '../Redux/movieSlice';
 import { Link } from 'react-router-dom';
-import GenreSelection from './GenreSelection';
 
 const MovieList = () => {
     const dispatch = useDispatch();
@@ -35,11 +34,6 @@ const MovieList = () => {
   return (
     
     <div>
-        <div>
-            <GenreSelection/>
-        
-        </div>
-
        {movies?.map((movie) => (
         <div key={movie.id}>
           <Link to={`/movie/${movie.id}`}>

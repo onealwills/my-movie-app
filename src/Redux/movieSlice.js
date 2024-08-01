@@ -16,19 +16,14 @@ const initialState = {
     // selectedGenres: [],
   };
 
-
-  // Create an asynchronous thunk for fetching movies
-
-
-
-    // Create an asynchronous thunk for fetching movies
+  
   export const fetchMovies = createAsyncThunk(
       'movies/fetchMovies',
       async (page = 1) => {
         const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${api_key}&page=${page}`);
         const data = await response.json();
         console.log("fetch result", data);
-        return data.results; // Adjust this if your API response format is different
+        return data.results; 
       }
     );
   
@@ -39,12 +34,12 @@ const initialState = {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${api_key}`);
         const data = await response.json();
         console.log("movie detail", data);
-        return data; // Adjust this if your API response format is different
-      }
+        return data; 
+       }
     );
   
   
-    // Thunk to fetch movies based on selected genres
+
   export const fetchMoviesByGenres = createAsyncThunk(
     'movies/fetchMoviesByGenres',
     async (_, { getState }) => {
@@ -58,26 +53,8 @@ const initialState = {
   );
 
 
-  // Thunk to fetch movies based on selected genres
-// export const fetchMoviesByGenres = createAsyncThunk(
-//   'movies/fetchMoviesByGenres',
-//   async (_, { getState }) => {
-//       const { selectedGenres } = getState().movies;
-//       const genreString = selectedGenres.join(',');
-//       const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreString}`);
-//       const data = await response.json();
-//       console.log("fetch movies by genre result", data);
-//       return data.results;
-//   }
-// );
 
 
-  
-
-  
-
-
-// Create a slice of the store
 const moviesSlice = createSlice({
       name: 'movies',
       initialState,

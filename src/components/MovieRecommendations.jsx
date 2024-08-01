@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMoviesByGenres } from '../Redux/movieSlice';
-// import { selectFilteredMovies } from '../Redux/Selector/selector';
-// import { fetchMovies } from '../Redux/movieSlice';
+
 
 
 
