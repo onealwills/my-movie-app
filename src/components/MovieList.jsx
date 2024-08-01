@@ -9,14 +9,21 @@ const MovieList = () => {
     const movies = useSelector((state) => state.movies.movies);
     const status = useSelector((state) => state.movies.status);
     const error = useSelector((state) => state.movies.error);
+    const selectedGenres = useSelector((state) => state.movies.selectedGenres);
 
     console.log('movies=>', movies);
+    console.log('selected genres=>', selectedGenres);
    
     useEffect(() => {
-      if (status === 'idle') {
-        dispatch(fetchMovies());
-      }
-    }, [status, dispatch]);
+        if (status === 'idle') {
+            if (selectedGenres.length > 0) {
+                dispatch(fetchMoviesByGenres());
+            } else {
+                dispatch(fetchMovies());
+            }
+        }
+    }, [status, dispatch, selectedGenres]);
+
   
     if (status === 'loading') {
       return <div>Loading...</div>;

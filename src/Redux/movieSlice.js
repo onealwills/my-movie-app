@@ -52,6 +52,22 @@ const initialState = {
         return data.results;
     }
   );
+
+
+  // Thunk to fetch movies based on selected genres
+// export const fetchMoviesByGenres = createAsyncThunk(
+//   'movies/fetchMoviesByGenres',
+//   async (_, { getState }) => {
+//       const { selectedGenres } = getState().movies;
+//       const genreString = selectedGenres.join(',');
+//       const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreString}`);
+//       const data = await response.json();
+//       console.log("fetch movies by genre result", data);
+//       return data.results;
+//   }
+// );
+
+
   
 
   
