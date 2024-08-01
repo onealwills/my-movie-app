@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGenres, toggleGenreSelection } from '../Redux/genreSlice';
+import { fetchMoviesByGenres, setSelectedGenres } from '../Redux/movieSlice';
 
 const GenreSelection = () => {
 
@@ -20,8 +21,18 @@ const GenreSelection = () => {
       }
     }, [status, dispatch]);
   
-    const handleGenreClick = (genreId) => {
-      dispatch(toggleGenreSelection(genreId));
+    // const handleGenreClick = (genreId) => {
+    //   dispatch(toggleGenreSelection(genreId));
+    // };
+
+    const handleGenreChange = (e) => {
+        const value = e.target.value;
+        const newSelectedGenres = selectedGenres.includes(value)
+            ? selectedGenres.filter((genre) => genre !== value)
+            : [...selectedGenres, value];
+
+        dispatch(setSelectedGenres(newSelectedGenres));
+        dispatch(fetchMoviesByGenres());
     };
   
     if (status === 'loading') {
@@ -35,7 +46,7 @@ const GenreSelection = () => {
 
   return (
     <div>
-    <h2>Select Your Favorite Genres</h2>
+    {/* <h2>Select Your Favorite Genres</h2>
       <ul>
         {genres?.map((genre) => (
           <li key={genre.id} onClick={() => handleGenreClick(genre.id)}>
@@ -47,8 +58,19 @@ const GenreSelection = () => {
             {genre.name}
           </li>
         ))}
-      </ul>
-      
+      </ul> */}
+      <h2>Select Genres</h2>
+        {genres?.map((genre) => (
+            <div key={genre.id}>
+                <input
+                    type="checkbox"
+                    value={genre.id}
+                    checked={selectedGenres.includes(genre.id)}
+                    onChange={handleGenreChange}
+                />
+                <label>{genre.name}</label>
+            </div>
+        ))}
     </div>
   )
 }
