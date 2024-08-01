@@ -4,7 +4,6 @@ import { fetchMovies } from './Redux/movieSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
 import MovieRecommendations from './components/MovieRecommendations.jsx';
 import MovieList from './components/MovieList.jsx';
-import GenreSelection from './components/GenreSelection.jsx';
 import MovieDetail from './components/MovieDetail.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -35,7 +34,7 @@ useEffect(() => {
         <Route path="/recommendations" element={<MovieRecommendations />} />
         <Route path="/movie/:id" element={<MovieDetail/>} />
       </Routes>
-      <GenreSelection/>
+      
     </Router>
   );
 }
