@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import MovieRecommendations from './components/MovieRecommendations.jsx';
 import MovieList from './components/MovieList.jsx';
 import GenreSelection from './components/GenreSelection.jsx';
+import MovieDetail from './components/MovieDetail.jsx';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 function App() {
@@ -34,14 +36,20 @@ useEffect(() => {
   if (status === 'loading') return <div>Loading...</div>;
   if (status === 'failed') return <div>Error: {error}</div>;
   return (
-    <div className="App">
-      <h1 className='bg-red-700'>Hello world</h1>
-      <HomePage/>
-      {/* <GenreSelection/> */}
-      {/* <MovieRecommendations/> */}
-      <MovieList/>
-      <GenreSelection/>
-    </div>
+    // <div className="App">
+    //   <h1 className='bg-red-700'>Hello world</h1>
+    //   <HomePage/>
+    //   <GenreSelection/>
+    //   <MovieRecommendations/>
+    //   <MovieList/>
+    //   <GenreSelection/>
+    // </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MovieList />} />
+        <Route path="/movie/:id" element={<MovieDetail/>} />
+      </Routes>
+    </Router>
   );
 }
 
