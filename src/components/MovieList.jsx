@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovies } from '../Redux/movieSlice';
+import { fetchMovies, fetchMoviesByGenres } from '../Redux/movieSlice';
 import { Link } from 'react-router-dom';
 import GenreSelection from './GenreSelection';
 
