@@ -37,7 +37,7 @@ const GenreSelection = () => {
     return (
         <div>
             <h2>Select Genres</h2>
-            {genres.map((genre) => (
+            {genres?.map((genre) => (
                 <div key={genre.id}>
                     <input
                         type="checkbox"

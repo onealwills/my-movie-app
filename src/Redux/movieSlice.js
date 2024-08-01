@@ -1,15 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { loadState } from "../localStorageMiddleware";
 
 
 const api_key = process.env.REACT_APP_API_KEY;
 
 
 const initialState = {
-    movies: [],
+
+    ...loadState(),
     status: 'idle',
     error: null,
-    selectedGenres: [],
     movieDetails: null,
+    // movies: [],
+    // genreMovies:[],
+    // selectedGenres: [],
   };
 
 
@@ -101,6 +105,7 @@ const moviesSlice = createSlice({
           .addCase(fetchMoviesByGenres.fulfilled, (state, action) => {
               state.status = 'succeeded';
               state.movies = action.payload;
+              state.genreMovies = state.movies;
           })
           .addCase(fetchMoviesByGenres.rejected, (state, action) => {
               state.status = 'failed';

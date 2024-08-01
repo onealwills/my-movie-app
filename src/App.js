@@ -47,8 +47,10 @@ useEffect(() => {
     <Router>
       <Routes>
         <Route path="/" element={<MovieList />} />
+        <Route path="/recommendations" element={<MovieRecommendations />} />
         <Route path="/movie/:id" element={<MovieDetail/>} />
       </Routes>
+      <GenreSelection/>
     </Router>
   );
 }
