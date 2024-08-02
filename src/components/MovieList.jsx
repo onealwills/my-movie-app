@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, fetchMoviesByGenres } from '../Redux/movieSlice';
-import { Link } from 'react-router-dom';
 import GenreSelection from './GenreSelection';
+import MovieCard from './MovieCard';
 
 const MovieList = () => {
     const dispatch = useDispatch();
@@ -34,19 +34,19 @@ const MovieList = () => {
     }
   return (
     
-    <div>
+    <div className='bg-gray-800'>
+        <nav className='h-[50px] border-2 border-red-700'>
+            <ul className='w-full flex justify-between items-center'>
+                <li>My movie APP</li>
+                <li>Recommendations</li>
+            </ul>
+        </nav>
         <div>
             <GenreSelection/>
         </div>
         <div>
             {movies?.map((movie) => (
-                <div key={movie.id}>
-                <Link to={`/movie/${movie.id}`}>
-                    <h2>{movie.title}</h2>
-                </Link>
-                <p>{movie.overview}</p>
-                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-                </div>
+                <MovieCard key={movie.id} movie={movie}/>
             ))}    
         </div>
       

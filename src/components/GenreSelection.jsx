@@ -16,15 +16,15 @@ const GenreSelection = () => {
         }
     }, [status, dispatch]);
 
-    const handleGenreChange = (e) => {
-        const value = e.target.value;
-        const newSelectedGenres = selectedGenres.includes(value)
-            ? selectedGenres.filter((genre) => genre !== value)
-            : [...selectedGenres, value];
 
+    const handleGenreChange = (genreId) => {
+        const newSelectedGenres = selectedGenres.includes(genreId)
+        ? selectedGenres.filter((genre) => genre !== genreId)
+        : [...selectedGenres, genreId];
         dispatch(setSelectedGenres(newSelectedGenres));
         dispatch(fetchMoviesByGenres());
     };
+  
 
     if (status === 'loading') {
         return <div>Loading...</div>;
@@ -37,17 +37,21 @@ const GenreSelection = () => {
     return (
         <div>
             <h2>Select Genres</h2>
-            {genres?.map((genre) => (
-                <div key={genre.id}>
-                    <input
-                        type="checkbox"
-                        value={genre.id}
-                        checked={selectedGenres.includes(genre.id)}
-                        onChange={handleGenreChange}
-                    />
-                    <label>{genre.name}</label>
-                </div>
-            ))}
+            <div className='flex'>
+                {genres?.map((genre) => (
+                    <div className='border-2 border-yellow-500 w-[120px]' key={genre.id}>
+                        <button
+                        className={`bg-gray-800 text-white py-2 px-4 rounded w-[100px] ${
+                            selectedGenres.includes(genre.id) ? "bg-gray-600" : ""
+                        }`}
+                        onClick={() => handleGenreChange(genre.id)}
+                        >
+                        {genre.name}
+                        </button>
+                    </div>
+                ))}
+            </div>
+
         </div>
     );
 };
