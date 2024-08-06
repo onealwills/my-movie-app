@@ -20,24 +20,15 @@ const GenreSelection = () => {
         }
     }, [status, dispatch]);
 
-    // const handleGenreChange = (e) => {
-    //     const value = e.target.value;
-    //     const newSelectedGenres = selectedGenres.includes(value)
-    //         ? selectedGenres.filter((genre) => genre !== value)
-    //         : [...selectedGenres, value];
-
-    //     dispatch(setSelectedGenres(newSelectedGenres));
-    //     dispatch(fetchMoviesByGenres());
-    // };
-
+   
     const handleGenreChange = (genreId) => {
         const newSelectedGenres = selectedGenres.includes(genreId)
-            ? selectedGenres.filter((genre) => genre !== genreId)
-            : [...selectedGenres, genreId];
-
+        ? selectedGenres.filter((genre) => genre !== genreId)
+        : [...selectedGenres, genreId];
         dispatch(setSelectedGenres(newSelectedGenres));
         dispatch(fetchMoviesByGenres());
     };
+  
 
 
     if (status === 'loading') {
@@ -67,7 +58,7 @@ const GenreSelection = () => {
             </div>
         </div>
         
-    );
-};
+    )
+}
 
-export default GenreSelection;
+export default GenreSelection

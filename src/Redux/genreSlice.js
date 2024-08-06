@@ -10,7 +10,6 @@ const initialState = {
   error: null
 };
 
-// Create an asynchronous thunk for fetching genres
 export const fetchGenres = createAsyncThunk(
   'genres/fetchGenres',
   async () => {
@@ -23,12 +22,12 @@ export const fetchGenres = createAsyncThunk(
     const data = await response.json();
     console.log('Fetched genres data:', data);
     console.log("bearer token",process.env.REACT_APP_BEARER_TOKEN);
-    return data.genres; // Adjust this if your API response format is different
+    return data.genres; 
   }
 );
 
 
-// Create a slice of the store
+
 const genresSlice = createSlice({
   name: 'genres',
   initialState,

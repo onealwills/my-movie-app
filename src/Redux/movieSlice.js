@@ -25,7 +25,7 @@ const initialState = {
         const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${api_key}&page=${page}`);
         const data = await response.json();
         console.log("fetch result", data);
-        return data.results; // Adjust this if your API response format is different
+        return data.results; 
       }
     );
   
@@ -37,8 +37,8 @@ const initialState = {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${api_key}`);
         const data = await response.json();
         console.log("movie detail", data);
-        return data; // Adjust this if your API response format is different
-      }
+        return data; 
+       }
     );
 
   
