@@ -12,14 +12,15 @@ const MovieDetail = () => {
 
 
     console.log('id>>',id)
+    
 
     useEffect(() => {
       if(status === "idle"){
         dispatch(fetchMovieDetails(id));
       }
-      // dispatch(resetMovieDetails());
-      // dispatch(resetStatus());
     }, [dispatch, id, status]);
+
+    
         
     console.log("Movie details in component:", movieDetails);
     
@@ -29,15 +30,17 @@ const MovieDetail = () => {
   return (
     <div className='bg-gray-800 w-full flex justify-center items-center'>
     {movieDetails ? (
-      <div className='w-[500px] mt-8'>
+      <div className='w-[900px] mt-8 flex gap-7'>
         <div className='w-full flex justify-center items-center  border-3 border-black '>
           <img className='w-[400px] h-[600px]' src={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`} alt={movieDetails.title} />
         </div>
-        <h1 className='text-yellow-200 text-3xl font-bold mb-4 mt-4'>{movieDetails?.title}</h1>
-        <p className='text-gray-100 text-lg mb-7'>{movieDetails?.overview}</p>
-        <p className='text-gray-100 text-lg mb-1'>Runtime: {movieDetails?.runtime} minutes</p>
-        <p className='text-gray-100 text-lg mb-1'>Average Rating: {movieDetails?.vote_average}</p>
-        <p className='text-gray-100 text-lg mb-1'>Release Date: {movieDetails?.release_date}</p> 
+        <div>
+          <h1 className='text-yellow-200 text-3xl font-bold mb-4 mt-4'>{movieDetails?.title}</h1>
+          <p className='text-gray-100 text-lg mb-7'>{movieDetails?.overview}</p>
+          <p className='text-gray-100 text-lg mb-1'>Runtime: {movieDetails?.runtime} minutes</p>
+          <p className='text-gray-100 text-lg mb-1'>Average Rating: {movieDetails?.vote_average}</p>
+          <p className='text-gray-100 text-lg mb-1'>Release Date: {movieDetails?.release_date}</p> 
+        </div>       
       </div>
     ) : (
       <div>No movie details found</div>

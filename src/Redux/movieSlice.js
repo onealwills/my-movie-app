@@ -69,7 +69,7 @@ const moviesSlice = createSlice({
         },
         resetMovieDetails: (state) => {
           state.movieDetails = null;
-        }, 
+        },  
         resetStatus: (state) => {
           state.status = 'idle';
         },
@@ -111,6 +111,7 @@ const moviesSlice = createSlice({
             state.status = 'failed';
             state.error = action.error.message;
           });
+  
       }
     });
   
