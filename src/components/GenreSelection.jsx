@@ -10,21 +10,35 @@ const GenreSelection = () => {
     const status = useSelector((state) => state.genres.status);
     const error = useSelector((state) => state.genres.error);
 
+
+    console.log('selected genres', selectedGenres)
+    console.log('genres', genres)
+
     useEffect(() => {
         if (status === 'idle') {
             dispatch(fetchGenres());
         }
     }, [status, dispatch]);
 
-    const handleGenreChange = (e) => {
-        const value = e.target.value;
-        const newSelectedGenres = selectedGenres.includes(value)
-            ? selectedGenres.filter((genre) => genre !== value)
-            : [...selectedGenres, value];
+    // const handleGenreChange = (e) => {
+    //     const value = e.target.value;
+    //     const newSelectedGenres = selectedGenres.includes(value)
+    //         ? selectedGenres.filter((genre) => genre !== value)
+    //         : [...selectedGenres, value];
+
+    //     dispatch(setSelectedGenres(newSelectedGenres));
+    //     dispatch(fetchMoviesByGenres());
+    // };
+
+    const handleGenreChange = (genreId) => {
+        const newSelectedGenres = selectedGenres.includes(genreId)
+            ? selectedGenres.filter((genre) => genre !== genreId)
+            : [...selectedGenres, genreId];
 
         dispatch(setSelectedGenres(newSelectedGenres));
         dispatch(fetchMoviesByGenres());
     };
+
 
     if (status === 'loading') {
         return <div>Loading...</div>;
@@ -35,20 +49,24 @@ const GenreSelection = () => {
     }
 
     return (
-        <div>
-            <h2>Select Genres</h2>
-            {genres?.map((genre) => (
-                <div key={genre.id}>
-                    <input
-                        type="checkbox"
-                        value={genre.id}
-                        checked={selectedGenres.includes(genre.id)}
-                        onChange={handleGenreChange}
-                    />
-                    <label>{genre.name}</label>
-                </div>
-            ))}
+        <div className='flex justify-center items-center mb-14'>
+            <div className='w-[700px] flex flex-wrap justify-center items-center'>
+                {genres?.map((genre) => (
+                    <div key={genre.id}>
+                        <button
+                            type="button"
+                            onClick={() => handleGenreChange(genre.id)}
+                            className={`text-white border bg-transparent appearance-none py-2 px-4  hover:bg-white hover:text-black ${
+                                selectedGenres.includes(genre.id) ? "bg-gray-800" : ""
+                            }`}
+                        >
+                            {genre.name}
+                        </button>
+                    </div>
+                ))}
+            </div>
         </div>
+        
     );
 };
 

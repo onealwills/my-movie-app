@@ -1,13 +1,11 @@
 import './App.css';
-import HomePage from './pages/HomePage';
 import { useEffect } from 'react';
 import { fetchMovies } from './Redux/movieSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
-import MovieRecommendations from './components/MovieRecommendations.jsx';
-import MovieList from './components/MovieList.jsx';
-import GenreSelection from './components/GenreSelection.jsx';
-import MovieDetail from './components/MovieDetail.jsx';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
+import MovieList from './pages/MovieList.jsx';
+import MovieDetail from './pages/MovieDetail.jsx';
+import MovieRecommendations from './pages/MovieRecommendations.jsx';
 
 
 function App() {
@@ -50,7 +48,6 @@ useEffect(() => {
         <Route path="/recommendations" element={<MovieRecommendations />} />
         <Route path="/movie/:id" element={<MovieDetail/>} />
       </Routes>
-      <GenreSelection/>
     </Router>
   );
 }
